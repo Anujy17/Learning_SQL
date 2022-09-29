@@ -1,0 +1,58 @@
+link -- https://www.codingninjas.com/codestudio/problems/employee-bonus_2111949?topList=top-100-sql-problems&leftPanelTab=1
+
+Problem Statement
+
+Select all employee's name and bonus whose bonus is < 1000.
+
+Table:Employee
+
++-------+--------+-----------+--------+
+| empId |  name  | supervisor| salary |
++-------+--------+-----------+--------+
+|   1   | John   |  3        | 1000   |
+|   2   | Dan    |  3        | 2000   |
+|   3   | Brad   |  null     | 4000   |
+|   4   | Thomas |  3        | 4000   |
++-------+--------+-----------+--------+
+empId is the primary key column for this table.
+Table: Bonus
+
++-------+-------+
+| empId | bonus |
++-------+-------+
+| 2     | 500   |
+| 4     | 2000  |
++-------+-------+
+empId is the primary key column for this table.
+
+Example output:
+
+ +-------+-------+
+ | name  | bonus |
++-------+-------+
+| John  | null  |
+| Dan   | 500   |
+| Brad  | null  |
++-------+-------+
+
+
+
+------------------solution  1------------------------
+
+with newt as (select name,empid from employee where empid not in (select empid from bonus where bonus>1000))
+
+select name, case when bonus is not null then bonus else null end as bonus
+from newt left join bonus 
+on newt.empid = bonus.empid
+
+
+-------------------solution 2 ----------------------------
+
+WITH t1 AS(SELECT e.empId,name,supervisor,salary,bonus
+FROM  Employee AS e
+LEFT JOIN Bonus AS b
+ON e.empId=b.empId)
+SELECT name,bonus
+FROM t1
+WHERE bonus <1000 OR bonus IS NULL;
+
