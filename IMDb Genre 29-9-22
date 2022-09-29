@@ -1,0 +1,22 @@
+
+link ----- https://www.codingninjas.com/codestudio/problems/imdb_1755912?topList=top-100-sql-problems
+
+Problem Statement
+Suggest Edit
+Print the genre and the maximum net profit among all the movies of that genre released in 2012 per genre. (Download the dataset from console)
+Note:
+1. Do not print any row where either genre or the net profit is empty/null.
+2. net_profit = Domestic + Worldwide - Budget
+3. Keep the name of the columns as 'genre' and 'net_profit'
+4. The genres should be printed in alphabetical order.
+
+
+
+--------------solution -----------------
+
+
+select s.genre , max(e.Domestic+e.Worldwide-d.Budget) as net_profit from genre s join earning e on s.Movie_id=e.Movie_id 
+join IMDB d on s.Movie_id=d.Movie_id
+where s.genre is not null and d.Title like '%(2012)'
+group by s.genre
+order by s.genre
