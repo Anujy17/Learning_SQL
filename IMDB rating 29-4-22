@@ -1,0 +1,13 @@
+link --- https://www.codingninjas.com/codestudio/problems/testingg-sql_1755903?topList=top-100-sql-problems
+
+Problem Statement
+
+From the IMDb dataset, print the title and rating of those movies which have a genre starting from 'C'
+released in 2014 with a budget higher than 4 Crore. (Download the dataset from console)
+
+
+
+---------------solution ---------------------------
+
+select s.Title, s.Rating from IMDB s join genre e on s.Movie_id=e.Movie_id
+where s.title like '%(2014)' and e.genre like 'C%' and s.Budget>40000000
