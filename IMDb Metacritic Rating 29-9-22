@@ -1,0 +1,13 @@
+link ---https://www.codingninjas.com/codestudio/problems/imdb_1755910?topList=top-100-sql-problems
+
+Problem Statement
+
+Print the title and ratings of the movies released in 2012 whose metacritic rating is 
+more than 60 and Domestic collections exceed 10 Crores. (Download the dataset from console)
+
+
+-------------------solution -----------------------
+
+
+select s.title , s.rating from IMDB s join earning e on s.Movie_id=e.Movie_id where s.MetaCritic>60 and e.Domestic>100000000 
+and s.title like '%(2012)'
