@@ -17,13 +17,16 @@ For example, given the above Employee table, the query should return 200 as the 
 | 200                 |
 +---------------------+
 
-solution -1
+----------------------solution --------------------------------
 
-SELECT max(Salary) as SecondHighestSalary
-FROM Employee
-WHERE Salary < (SELECT max(Salary) FROM Employee)
+with sal as ( select salary from employee order by salary desc
+               limit 1 offset 1
+            )
 
-solution - 2
-select Salary from Employee 
-order by 1 desc
-limit 1 offset 1
+select case 
+        when (select count(*) from employee) >=2
+        then (select salary from sal)
+        else null 
+        end as Salary 
+
+
