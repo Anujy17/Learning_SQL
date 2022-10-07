@@ -1,0 +1,22 @@
+link --- https://www.codingninjas.com/codestudio/problems/marvel-cities_2242793?topList=top-100-sql-problems
+
+Problem Statement
+
+Query all columns for all Marvel cities in the CITY table with populations larger than 100000. The CountryCode for Marvel is Marv.
+The CITY table is described as follows:
+
++---------+--------+
+| Field  |  Type    |
++---------+--------+
+|   ID    |  Number  | 
+|   Name  | Varchar  |
+|   CountryCode | Varchar  |
+|   Population |   Number  | 
++---------+--------+-------+
+
+
+-------- solution -------------------------
+
+
+select * from CITY
+where Population > 100000 and CountryCode='Marv'
